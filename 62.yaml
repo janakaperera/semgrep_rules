@@ -1,0 +1,48 @@
+rules:
+- id: sqli_1
+  pattern: $subunits = join(',', $subUnitIds);
+  message: May lead to a sql injection vulnerability
+  languages: [php]
+  severity: WARNING
+
+- id: sqli_2
+  pattern:  $empIds = join(',', $searchParams['employeeIds']);
+  message: May lead to a sql injection vulnerability
+  languages: [php]
+  severity: WARNING
+
+- id: sqli_3
+  pattern:  $locationIds = join(',', $searchParams['location']);
+  message: May lead to a sql injection vulnerability
+  languages: [php]
+  severity: WARNING
+
+- id: sqli_4
+  pattern:  $leaveHoursWhere =  " COALESCE(le.length_hours,0) > " . $searchParams['leave_hour']['from'];
+  message: May lead to a sql injection vulnerability
+  languages: [php]
+  severity: WARNING
+
+- id: sqli_5
+  pattern: $leaveHoursWhere = " COALESCE(le.length_hours,0) BETWEEN " . $searchParams['leave_hour']['from'] . " AND " . $searchParams['leave_hour']['to'];
+  message: May lead to a sql injection vulnerability
+  languages: [php]
+  severity: WARNING
+
+- id: sqli_6
+  pattern:  $leaveHoursWhere = " COALESCE(le.length_hours,0) < " . $searchParams['leave_hour']['from'];
+  message: May lead to a sql injection vulnerability
+  languages: [php]
+  severity: WARNING
+
+- id: sqli_7
+  pattern:  $result = $this->getDbHandler()->query($baseQuery)->fetchAll();
+  message: May lead to a sql injection vulnerability
+  languages: [php]
+  severity: WARNING
+
+- id: sqli_8
+  pattern:  if(!input)return $translate.instant(input);
+  message: May lead to a XSS vulnerability
+  languages: [js]
+  severity: WARNING
